@@ -3,26 +3,47 @@ package com.oc.moko.oc_lade.model;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
+@Entity
 public class Utilisateur {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id_utilisateur")
 	private UUID idUtilisateur;
+	@NotBlank
+	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
+	@NotBlank
+	@Column(name="nom_utilisateur")
 	private String nomUtilisateur;
+	@NotBlank
+	@Column(name="email_utilisateur")
 	private String emailUtilisateur;
+	@NotBlank
+	@Column(name="mot_de_passe_utilisateur")
 	private String motDePasseUtilisateur;
+	@NotBlank
+	@Column(name="privilege_utilisateur")
 	private Privilege privilegeUtilisateur;
+	@NotBlank
+	@Column(name="date_inscription_utilisateur")
 	private Timestamp dateInscriptionUtilisateur;
 	
-	public Utilisateur(	
-		@JsonProperty("idUtilisateur") UUID idUtilisateur, 
-		@JsonProperty("prenomUtilisateur") String prenomUtilisateur, 
-		@JsonProperty("nomUtilisateur") String nomUtilisateur, 
-		@JsonProperty("emailUtilisateur") String emailUtilisateur,
-		@JsonProperty("motDePasseUtilisateur") String motDePasseUtilisateur, 
-		@JsonProperty("privilegeUtilisateur") Privilege privilege_utilisateur, 
-		@JsonProperty("dateInscriptionUtilisateur") Timestamp dateInscriptionUtilisateur
+	protected Utilisateur(	
+		UUID idUtilisateur, 
+		String prenomUtilisateur, 
+		String nomUtilisateur, 
+		String emailUtilisateur,
+		String motDePasseUtilisateur, 
+		Privilege privilege_utilisateur, 
+		Timestamp dateInscriptionUtilisateur
 	) {
 		this.idUtilisateur = idUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
